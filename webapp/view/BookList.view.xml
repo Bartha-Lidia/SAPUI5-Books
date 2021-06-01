@@ -1,0 +1,77 @@
+<mvc:View
+		controllerName="org.ubb.books.controller.BookList"
+   		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:core="sap.ui.core"
+		xmlns="sap.m">
+
+   <Table id="idBooksTable"
+		items="{
+			path: '/Books',
+			sorter: {
+				path: 'Title'
+			}
+		}"
+		growing="true"
+		growingThreshold="10">
+		<headerToolbar>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://add" text="{i18n>createBook}" press=".onOpenDialog"/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Title" />
+			</Column>
+			<Column>
+				<Text text="Author" />
+			</Column>
+			<Column>
+				<Text text="Published on" />
+			</Column>
+			<Column>
+				<Text text="Language" />
+			</Column>
+			<Column>
+				<Text text="Total number books" />
+			</Column>
+         	<Column>
+				<Text text="Available books" />
+			</Column>
+			<Column>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<ObjectIdentifier
+						title="{Title}"
+						text="{Isbn}"/>
+					<Text text="{Author}" />
+					<Text text="{ 
+							path: 'DataPublished',
+							type: 'sap.ui.model.type.Date'
+               			}" 
+					/>
+					<Text text="{Language}" />
+					<Text text="{= parseInt(${TotalNrBook}) }" />
+					<Text text="{= parseInt(${NrAvailableBook}) }" />
+					<HBox>
+						<Button
+								id="editBookButton"
+								icon="sap-icon://edit"
+								press=".onEdit"
+								tooltip="{i18n>editButtonText}">
+						</Button>
+						<Button
+								id="deleteBookButton"
+								icon="sap-icon://delete"
+								press=".onDelete"
+								tooltip="{i18n>deleteButtonText}">
+						</Button>
+					</HBox>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</mvc:View>
